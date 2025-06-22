@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .layers.services.services import getAllImages
 from .layers.services.services import getAllFavourites
+from app.config import config 
+from .layers.services.services import filterByType
+
 
 def index_page(request):
     return render(request, 'index.html')
@@ -38,8 +41,8 @@ def filter_by_type(request):
     type = request.POST.get('type', '')
 
     if type != '':
-        images = [] # debe traer un listado filtrado de imágenes, segun si es o contiene ese tipo.
         favourite_list = []
+        images = filterByType(type) if type else []
 
         return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
     else:

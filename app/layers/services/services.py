@@ -17,6 +17,7 @@ def getAllImages():
             cards.append(card)
     return cards
     
+
 # función que filtra según el nombre del pokemon.
 def filterByCharacter(name):
     filtered_cards = []
@@ -31,7 +32,7 @@ def filterByType(type_filter):
     filtered_cards = []
 
     for card in getAllImages():
-        if card.get('type') == type_filter:
+        if type_filter in card.types:   
             filtered_cards.append(card)
 
     return filtered_cards
